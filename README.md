@@ -86,3 +86,13 @@ git push -u origin machine-name/task-name
 ```
 
 Before opening or merging a pull request, make sure the project still runs and tests pass.
+
+## Sync This Directory
+
+To update a machine to the latest GitHub `main` commit:
+
+```powershell
+.\scripts\sync-main.ps1
+```
+
+The script stops if there are uncommitted local changes, so work is not accidentally mixed with incoming changes.
