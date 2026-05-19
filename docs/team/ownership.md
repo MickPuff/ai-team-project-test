@@ -1,6 +1,6 @@
 # Team Ownership
 
-## Codex
+## Codex (TAKEN - Mick)
 
 Primary responsibility:
 
@@ -9,6 +9,7 @@ Primary responsibility:
 - Cross-team consistency
 - Pull request review
 - Final synthesis after discovery
+- Mick's Part: owner-side direction, Codex coordination, integration decisions, and final project synthesis
 
 Working branch:
 
@@ -66,5 +67,6 @@ gemini-3/dashboard-reporting
 - Put raw discovery notes in `docs/discovery/`.
 - Put source data findings in `docs/data/`.
 - Put dashboard and report requirements in `docs/reporting/`.
+- Label any work, notes, or decisions made by Mick as `Mick's Part`.
 - Open pull requests into `main`.
 - Mention affected files and stakeholders in every pull request.

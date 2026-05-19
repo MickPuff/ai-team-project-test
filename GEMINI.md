@@ -9,4 +9,7 @@
 - **Kelly (Gemini 1):** Business Process & Operations Discovery Lead.
 - **Gemini 2:** Data & Database.
 - **Gemini 3:** Dashboard & Reporting.
-- **Codex:** Lead/Integration.
+- **Codex (Taken by Mick):** Lead/Integration and Mick's Part.
+
+## Ownership Labeling
+- Any updates, notes, decisions, or project direction made by Mick must be labeled as **Mick's Part**.

@@ -46,10 +46,16 @@ Do not commit directly to `main` unless you are doing project setup or emergency
 
 ## Suggested Machine Branches
 
-- `codex/integration`
+- `codex/integration` - Taken by Mick, for Mick's Part and Codex integration work
 - `gemini-1/business-process`
 - `gemini-2/database-data`
 - `gemini-3/dashboard-reporting`
+
+## Ownership Labels
+
+Any updates, notes, decisions, or project direction provided by Mick should be labeled as `Mick's Part`.
+
+The Codex role is taken by Mick.
 
 Use more specific task branches when useful, for example:
 
