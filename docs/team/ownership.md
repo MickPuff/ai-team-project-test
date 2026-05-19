@@ -33,7 +33,7 @@ gemini-1/business-process
 
 ## Gemini 2
 
-Primary responsibility:
+Primary responsibility: andachutirada
 
 - Database planning
 - Spreadsheet and source data inventory
