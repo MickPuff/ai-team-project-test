@@ -6,7 +6,7 @@ Use this file for lightweight coordination across the AI CLI machines.
 
 - [ ] Codex: integration lead, repo structure, architecture, GitHub workflow
 - [ ] Gemini 1: business process discovery, pain points, stakeholder workflow mapping
-- [ ] Gemini 2: database, spreadsheet inventory, data cleaning, source data profiling
+- [ ] Gemini 2 (You): database, spreadsheet inventory, data cleaning, source data profiling
 - [ ] Gemini 3: dashboard, reporting, KPI definitions, user-facing summaries
 
 ## Discovery Tasks For May 20, 2026
