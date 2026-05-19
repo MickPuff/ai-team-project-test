@@ -10,7 +10,9 @@ Status: Draft. Validate definitions with the owner, finance, and managers.
 | Occupied rooms | Rooms currently occupied | Owner, managers, operations | Confirm exact status rule |
 | Vacant rooms | Rooms currently vacant | Owner, managers, operations | Confirm if unavailable rooms count as vacant |
 | Occupancy rate | Occupied rooms divided by total rentable rooms | Owner | |
-| Vacancy duration | Days since room became vacant | Managers, operations | Useful for action lists |
+| Vacancy duration | Average days since rooms became vacant (grouped by room type) | Managers, operations | Useful for identifying slow-moving inventory |
+| Revenue by room type | Monthly income broken down by room category | Owner, finance | Helps identify most profitable assets |
+| Average Revenue Per Room (ARPR) | Total monthly income divided by total rooms | Owner | Basic efficiency metric |
 
 ## Finance KPIs
 
