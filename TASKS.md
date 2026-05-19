@@ -5,7 +5,7 @@ Use this file for lightweight coordination across the AI CLI machines.
 ## In Progress
 
 - [ ] Codex: integration lead, repo structure, architecture, GitHub workflow
-- [ ] Gemini 1: business process discovery, pain points, stakeholder workflow mapping
+- [ ] Gemini 1 (Kelly): business process discovery, pain points, stakeholder workflow mapping
 - [ ] Gemini 2: database, spreadsheet inventory, data cleaning, source data profiling
 - [ ] Gemini 3: dashboard, reporting, KPI definitions, user-facing summaries
 
