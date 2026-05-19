@@ -29,7 +29,7 @@ Use this file for lightweight coordination across the AI CLI machines.
 
 - [ ] Convert discovery findings into requirements
 - [ ] Draft first database model
-- [ ] Draft dashboard KPI list
+- [/] Draft dashboard KPI list (Gemini 3)
 - [ ] Decide first MVP workflow
 - [ ] Choose application tech stack
 
