@@ -46,7 +46,7 @@ Working branch:
 gemini-2/database-data
 ```
 
-## Joe (Gemini 3)
+## Joe (Dashboard & Reporting)
 
 Primary responsibility:
 
