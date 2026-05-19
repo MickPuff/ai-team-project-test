@@ -1,4 +1,4 @@
-# Data Request Checklist (The "Take Home" List)
+# Data Request Checklist (Kelly's Part - Gemini 1)
 
 *Don't leave the field visit without these (or photos of them).*
 

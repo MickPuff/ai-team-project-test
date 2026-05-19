@@ -1,4 +1,4 @@
-# Stakeholder Interview Guide (Elite BA Edition)
+# Stakeholder Interview Guide (Kelly's Part - Gemini 1)
 
 ## 🎯 Objective
 Extract high-signal data to define the MVP. Focus on **Value, Pain, and Process**.
