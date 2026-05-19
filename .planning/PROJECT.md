@@ -34,9 +34,9 @@ Primary information gathering is planned for May 20, 2026.
 
 ## Team Roles
 
-- Codex: integration lead and architecture coordinator
-- Gemini 1: business process and operations discovery
-- Gemini 2: database, spreadsheet, and data cleaning discovery
+- Codex: Mick (integration lead and architecture coordinator)
+- Gemini 1: Kelly (business process and operations discovery)
+- Gemini 2: Anda (database, spreadsheet, and data cleaning discovery)
 - Gemini 3: dashboard, reporting, and KPI discovery
 
 ## Current Assumptions

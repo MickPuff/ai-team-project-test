@@ -4,10 +4,10 @@ This repository is a collaborative environment for multiple AI agents and human 
 
 ## Team Roles & Skills
 The project requires a 4-member team with the following skills:
-1. **Project Lead / Architect**: System design, tech stack selection, milestone management.
-2. **Backend Developer**: API development, database management, security.
-3. **Frontend Developer**: UI/UX implementation, client-side logic.
-4. **QA & DevOps Specialist**: Testing automation, CI/CD, and quality assurance.
+1. **Integration Lead (Mick)**: Repo structure, architecture coordinator, and PR review.
+2. **Business Process Discovery (Kelly)**: Workflow mapping, stakeholder interviews, and pain points.
+3. **Database & Data Architect (Anda)**: Spreadsheet inventory, data cleaning, and schema design.
+4. **Dashboard & Reporting Specialist**: KPI definitions and reporting layouts.
 
 ## Core Workflows (Mandatory)
 Every agent working in this repository MUST adhere to these rules:

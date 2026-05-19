@@ -2,7 +2,7 @@
 
 ## Codex
 
-Primary responsibility:
+Primary responsibility: Mick
 
 - Integration lead
 - Architecture and repo structure
@@ -18,7 +18,7 @@ codex/integration
 
 ## Gemini 1
 
-Primary responsibility:
+Primary responsibility: Kelly
 
 - Business process mapping
 - Stakeholder interviews
@@ -33,7 +33,7 @@ gemini-1/business-process
 
 ## Gemini 2
 
-Primary responsibility: andachutirada
+Primary responsibility: Anda
 
 - Database planning
 - Spreadsheet and source data inventory
