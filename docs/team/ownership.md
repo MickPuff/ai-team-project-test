@@ -46,7 +46,7 @@ Working branch:
 gemini-2/database-data
 ```
 
-## Gemini 3
+## Joe (Gemini 3)
 
 Primary responsibility:
 
@@ -58,7 +58,7 @@ Primary responsibility:
 Working branch:
 
 ```text
-gemini-3/dashboard-reporting
+joe/dashboard-reporting
 ```
 
 ## Collaboration Rules

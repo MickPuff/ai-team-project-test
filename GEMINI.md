@@ -8,5 +8,5 @@
 ## Team Roles
 - **Kelly (Gemini 1):** Business Process & Operations Discovery Lead.
 - **Gemini 2:** Data & Database.
-- **Gemini 3:** Dashboard & Reporting.
+- **Joe:** Dashboard & Reporting.
 - **Codex:** Lead/Integration.
