@@ -16,7 +16,7 @@ Working branch:
 codex/integration
 ```
 
-## Gemini 1
+## Gemini 1 (TAKEN - Atite)
 
 Primary responsibility:
 
