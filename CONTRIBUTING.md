@@ -13,9 +13,9 @@ Examples:
 
 ```text
 codex/integration
-gemini-1/frontend-shell
-gemini-2/api-routes
-gemini-3/docs-and-tests
+gemini-1/business-process
+gemini-2/database-data
+gemini-3/dashboard-reporting
 ```
 
 ## Before Starting Work

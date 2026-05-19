@@ -1,0 +1,11 @@
+{
+  "project": "Residential Finance Automation",
+  "workflow": "multi-agent-github",
+  "current_phase": "discovery-preparation",
+  "team": {
+    "codex": "integration-architecture-review",
+    "gemini-1": "business-process-operations",
+    "gemini-2": "database-spreadsheet-data-cleaning",
+    "gemini-3": "dashboard-reporting-kpis"
+  }
+}
