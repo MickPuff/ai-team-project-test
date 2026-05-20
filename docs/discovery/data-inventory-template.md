@@ -1,40 +1,41 @@
-# Data Inventory Template
+# Data Inventory: Bo Thong Residence
 
-Use one section per spreadsheet, report, system export, or manual source.
+## Source Name: Maintenance History Excel
 
-## Source Name
+Owner: Khun Aom (Operations Manager)
 
-Owner:
+Current location: Operations Office (Local PC / USB)
 
-Current location:
+Format: .xlsx
 
-Format:
+Update frequency: Daily / Reactive
 
-Update frequency:
+Who updates it: Khun Aom (based on staff verbal reports/paper notes)
 
-Who updates it:
-
-Who consumes it:
+Who consumes it: Khun Aom, Owner (periodic review)
 
 ## Business Purpose
 
-Describe what this source is used for.
+Track repair history per room and total maintenance spend. Used to decide when to replace vs. repair assets like AC units.
 
 ## Columns Or Fields
 
 | Field | Meaning | Example | Required | Problems |
 | --- | --- | --- | --- | --- |
-| | | | | |
+| Date | Date of repair | 2026-05-15 | Yes | |
+| Room Number | Unique ID | 4102 | Yes | |
+| Issue | Description | AC not cooling | Yes | Inconsistent descriptions |
+| Cost | Parts/Labor | 1,500 THB | Yes | Hard to aggregate |
+| Status | Progress | Done | Yes | Only "Done" is usually recorded |
 
 ## Data Quality Notes
 
-- Missing values:
-- Duplicate records:
-- Inconsistent names:
-- Date format issues:
-- Currency/number format issues:
-- Manual cleanup steps:
+- Missing values: Frequent for older records.
+- Duplicate records: Occasional re-entry of same issue.
+- Inconsistent names: "AC", "Air", "Aircon" all used.
+- Date format issues: Thai Buddhist calendar vs Western calendar inconsistencies.
+- Manual cleanup steps: Requires standardization of issue categories.
 
 ## Automation Opportunity
 
-What should the system do with this source?
+Digitize reporting via mobile-friendly QR portal for tenants and staff to log issues directly into the central database, eliminating the Excel middleman.

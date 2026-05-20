@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle, Clock, AlertTriangle, RefreshCw, Undo2 } from "lucide-react";
+import { CheckCircle, Clock, AlertTriangle, RefreshCw, Undo2, Map as MapIcon } from "lucide-react";
+import Link from "next/link";
 
 interface MaintenanceRequest {
   id: number;
@@ -69,13 +70,19 @@ export default function AdminDashboard() {
             <h1 className="text-3xl font-bold text-gray-900">Bo Thong Residence</h1>
             <p className="text-gray-600">Maintenance Management Dashboard</p>
           </div>
-          <button 
-            onClick={fetchRequests}
-            className="flex items-center space-x-2 bg-white px-4 py-2 rounded-lg shadow border hover:bg-gray-50 transition-all"
-          >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-            <span>Refresh</span>
-          </button>
+          <div className="flex items-center space-x-3">
+            <Link href="/admin/rooms" className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-all text-sm font-medium">
+              <MapIcon className="w-4 h-4" />
+              <span>Back to Dashboard</span>
+            </Link>
+            <button 
+              onClick={fetchRequests}
+              className="flex items-center space-x-2 bg-white px-4 py-2 rounded-lg shadow border hover:bg-gray-50 transition-all text-sm font-medium"
+            >
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+              <span>Refresh</span>
+            </button>
+          </div>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

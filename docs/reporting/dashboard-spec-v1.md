@@ -1,6 +1,6 @@
 # Dashboard Specification v1 (Bo Thong Residence)
 
-This document outlines the layout and visual requirements for the digital transformation dashboards.
+This document outlines the layout and visual requirements for the residential finance automation dashboards.
 
 ## 1. Owner Dashboard (Strategic View)
 **Goal:** High-level health check of the business.
@@ -13,7 +13,7 @@ This document outlines the layout and visual requirements for the digital transf
 
 - **Visuals:**
   - **Occupancy Trend (Line Chart):** Last 12 months.
-  - **Revenue Mix (Pie Chart):** Factory Contracts vs. Walk-ins.
+  - **Revenue Mix (Pie Chart):** Room income by renter type or room category.
   - **Expiring Contracts (Table):** List of top 5 bulk contracts ending soon.
 
 ## 2. Manager Dashboard (Khun Aom - Operational View)
@@ -43,6 +43,6 @@ This document outlines the layout and visual requirements for the digital transf
   - **Preventive Schedule (Calendar):** Upcoming scheduled cleanings/checks.
 
 ## 4. Technical Requirements
-- **Data Source:** Bo Thong Database (WS3 tables).
+- **Data Source:** Residential finance automation database.
 - **Refresh Rate:** 1 hour (MVP).
 - **Export Formats:** PDF, Excel (via joe/reports module).
