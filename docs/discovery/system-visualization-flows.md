@@ -40,8 +40,8 @@ This document visualizes the two sides of the digital transformation: the **Tena
 ### The Flow:
 1.  **Alert:** Khun Aom receives a notification of a new request.
 2.  **Review:** She sees the request translated: **"แอร์ไม่เย็นและมีน้ำหยด"** (Thai).
-3.  **Assign:** She clicks "Assign" to send it to the Maintenance staff's phone.
-4.  **Complete:** Staff updates status and uploads a "Fix Complete" photo.
+3.  **Action:** Khun Aom coordinates with the handyman (offline).
+4.  **Update:** Once informed by the handyman that the job is finished, Khun Aom manually marks the task as **"Done"** in the dashboard.
 
 ### Visual Mockup (Desktop):
 ```text
@@ -58,8 +58,8 @@ This document visualizes the two sides of the digital transformation: the **Tena
 |  +---------+  +---------+  +---------+                      |
 |                                                             |
 |  LATEST REQUESTS:                                           |
-|  - Room 101: แอร์ไม่เย็น (Auto-Translated)   [ Assign ]     |
-|  - Room 305: ก๊อกน้ำเสีย                  [ In Progress ] |
+|  - Room 101: แอร์ไม่เย็น (Auto-Translated)   [ Mark Done ]  |
+|  - Room 305: ก๊อกน้ำเสีย                  [ Mark Done ]  |
 |                                                             |
 +-------------------------------------------------------------+
 ```
@@ -72,12 +72,9 @@ The system acts as the **Instant Middleman**:
 | Step | Tenant (Chinese) | System Bridge | Manager (Thai) |
 | :--- | :--- | :--- | :--- |
 | **Input** | "厕所漏水" | Translate ZH -> TH | "ชักโครกรั่ว" |
-| **Output** | "维修人员在路上" | Translate TH -> ZH | "ช่างกำลังไป" |
+| **Feedback** | "已收到报告" (Received) | Inform Tenant | "รับทราบ" (Acknowledge) |
 
 ---
 
-## 4. Maintenance Staff View (Mobile)
-A simple checklist for the handyman:
-- **Task:** Room 101 - AC Leak.
-- **Action:** Click "Start" -> Take "Before" Photo -> Repair -> Take "After" Photo -> Click "Done".
-- **Result:** Automatically updates the room back to "Available/OK" on Khun Aom's board.
+## 4. Operational Note
+Maintenance staff do not use the system. All digital status updates (In Progress -> Done) are handled exclusively by Khun Aom to maintain total control over the data quality.
