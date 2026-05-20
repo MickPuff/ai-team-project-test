@@ -124,3 +124,14 @@ def mark_request_done(request_id: int, db: Session = Depends(database.get_db)):
     request.completed_at = datetime.utcnow()
     db.commit()
     return {"status": "success"}
+
+@app.post("/api/admin/requests/{request_id}/reopen")
+def reopen_request(request_id: int, db: Session = Depends(database.get_db)):
+    request = db.query(models.MaintenanceRequest).filter(models.MaintenanceRequest.id == request_id).first()
+    if not request:
+        raise HTTPException(status_code=404, detail="Request not found")
+    
+    request.status = models.MaintenanceStatus.REPORTED
+    request.completed_at = None
+    db.commit()
+    return {"status": "success"}

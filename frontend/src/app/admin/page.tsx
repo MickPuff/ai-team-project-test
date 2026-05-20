@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle, Clock, AlertTriangle, RefreshCw } from "lucide-react";
+import { CheckCircle, Clock, AlertTriangle, RefreshCw, Undo2 } from "lucide-react";
 
 interface MaintenanceRequest {
   id: number;
@@ -17,6 +17,7 @@ interface MaintenanceRequest {
 export default function AdminDashboard() {
   const [requests, setRequests] = useState<MaintenanceRequest[]>([]);
   const [loading, setLoading] = useState(true);
+  const [confirmingId, setConfirmingId] = useState<number | null>(null);
 
   const fetchRequests = async () => {
     setLoading(true);
@@ -36,9 +37,21 @@ export default function AdminDashboard() {
       await fetch(`http://localhost:8000/api/admin/requests/${id}/done`, {
         method: "POST",
       });
+      setConfirmingId(null);
       fetchRequests();
     } catch (error) {
       console.error("Error marking as done:", error);
+    }
+  };
+
+  const reopenRequest = async (id: number) => {
+    try {
+      await fetch(`http://localhost:8000/api/admin/requests/${id}/reopen`, {
+        method: "POST",
+      });
+      fetchRequests();
+    } catch (error) {
+      console.error("Error reopening request:", error);
     }
   };
 
@@ -75,7 +88,7 @@ export default function AdminDashboard() {
             <p className="text-3xl font-bold text-gray-900">{requests.filter(r => r.status === 'completed').length}</p>
           </div>
           <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-yellow-500">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase">Recent Requests</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase">Recent Activity</h3>
             <p className="text-3xl font-bold text-gray-900">{requests.length > 0 ? 'Active' : 'None'}</p>
           </div>
         </div>
@@ -93,7 +106,7 @@ export default function AdminDashboard() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {requests.map((req) => (
-                <tr key={req.id} className="hover:bg-gray-50">
+                <tr key={req.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
                     {req.room_number}
                   </td>
@@ -108,22 +121,48 @@ export default function AdminDashboard() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     {req.status === 'completed' ? (
-                      <span className="flex items-center text-green-600">
+                      <span className="flex items-center text-green-600 font-medium">
                         <CheckCircle className="w-4 h-4 mr-1" /> Done
                       </span>
                     ) : (
-                      <span className="flex items-center text-yellow-600">
+                      <span className="flex items-center text-yellow-600 font-medium">
                         <Clock className="w-4 h-4 mr-1" /> Pending
                       </span>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    {req.status !== 'completed' && (
+                    {req.status !== 'completed' ? (
+                      confirmingId === req.id ? (
+                        <div className="flex items-center space-x-2">
+                          <button 
+                            onClick={() => markDone(req.id)}
+                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-bold transition-all shadow-sm"
+                          >
+                            Confirm
+                          </button>
+                          <button 
+                            onClick={() => setConfirmingId(null)}
+                            className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded text-xs font-bold transition-all"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      ) : (
+                        <button 
+                          onClick={() => setConfirmingId(req.id)}
+                          className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-bold transition-all shadow-sm active:scale-95"
+                        >
+                          Mark Done
+                        </button>
+                      )
+                    ) : (
                       <button 
-                        onClick={() => markDone(req.id)}
-                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-bold transition-all"
+                        onClick={() => reopenRequest(req.id)}
+                        className="flex items-center space-x-1 text-gray-400 hover:text-blue-600 transition-all group"
+                        title="Re-open task"
                       >
-                        Mark Done
+                        <Undo2 className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                        <span className="text-xs font-medium">Re-open</span>
                       </button>
                     )}
                   </td>
