@@ -1,27 +1,43 @@
-# OS
-Thumbs.db
-.DS_Store
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-# Editors
+# Testing
+coverage/
+
+# Next.js
+.next/
+out/
+
+# Production
+dist/
+build/
+
+# Backend
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.env.*
+!.env.example
+.venv
+env/
+instance/
+.pytest_cache/
+
+# IDEs/Editors
 .vscode/
 .idea/
+
+# OS
+.DS_Store
+Thumbs.db
 
 # Logs
 *.log
 
-# Environment
-.env
-.env.*
-!.env.example
-
-# Dependencies and build outputs
-node_modules/
-dist/
-build/
-coverage/
-
-# Python
-__pycache__/
-.pytest_cache/
-.venv/
-venv/
+# Project-specific
+uploads/*
+!uploads/.gitkeep
