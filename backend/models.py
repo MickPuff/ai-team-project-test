@@ -1,10 +1,10 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum, Boolean, Text
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
+from database import Base
 import enum
 from datetime import datetime
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Enum, Boolean, Text
+from sqlalchemy.orm import relationship
 
-Base = declarative_base()
+# Base = declarative_base() # Removed to use the one from database.py
 
 class UserRole(enum.Enum):
     ADMIN = "admin"

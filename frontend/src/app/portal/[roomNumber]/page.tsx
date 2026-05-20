@@ -48,12 +48,22 @@ export default function TenantPortal({ params }: { params: Promise<{ roomNumber:
     e.preventDefault();
     setStatus("submitting");
     
-    // TODO: Connect to actual backend API
     try {
-      // const formData = new FormData();
-      // formData.append("room_number", roomNumber);
-      // ...
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Mock delay
+      const formData = new FormData();
+      formData.append("room_number", roomNumber);
+      formData.append("category", category);
+      formData.append("description", description);
+      if (photo) {
+        formData.append("photo", photo);
+      }
+
+      const response = await fetch("http://localhost:8000/api/portal/report", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Failed to submit");
+      
       setStatus("success");
     } catch (err) {
       console.error(err);
