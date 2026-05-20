@@ -14,10 +14,22 @@ Status: Draft. Validate definitions with the owner, finance, and managers.
 | Revenue by room type | Monthly income broken down by room category | Owner, finance | Helps identify most profitable assets |
 | Average Revenue Per Room (ARPR) | Total monthly income divided by total rooms | Owner | Basic efficiency metric |
 
-## Finance KPIs
+## Maintenance & Equipment KPIs (Bo Thong MVP)
 
 | KPI | Definition | Audience | Notes |
 | --- | --- | --- | --- |
+| Frequently Repaired Rooms | List of rooms with >X repairs in 6 months | Operations, Owner | Identifies high-risk or low-quality rooms |
+| Pending Repair Count | Number of active 'Open' or 'Waiting' repairs | Operations | Daily workload tracker |
+| Maintenance Cost per Room | Total repair/spare part cost per unit | Owner, Finance | Helps in budgeting for preventive maintenance |
+| Equipment Failure Rate | Grouped failure count by item (e.g., Aircon vs Fridge) | Operations | Informs brand/vendor selection for replacements |
+
+## Strategic & Contract KPIs
+
+| KPI | Definition | Audience | Notes |
+| --- | --- | --- | --- |
+| Bulk Renter Concentration | % of rooms rented by Factory Contracts vs Walk-in | Owner | Risk assessment for large contract loss |
+| Upcoming Expiries (30/60 Days) | List of contracts ending within next 2 months | Managers | Critical for vacancy planning |
+| Revenue per Building/Floor | Grouped income by building block | Owner | Identifies most profitable sections |
 | Monthly income | Sum of income in selected month | Owner, finance | Confirm paid vs billed basis |
 | Monthly expenses | Sum of expenses in selected month | Owner, finance | |
 | Net income | Income minus expenses | Owner, finance | |
