@@ -1,68 +1,30 @@
-# Team Ownership
+# Team Ownership & Roles
 
-## Codex
+## Codex (Lead - Mick's Part)
+- **Primary Responsibility:** Integration lead, Architecture, and Cross-Workstream consistency.
+- **Working Branch:** `codex/integration`
 
-Primary responsibility:
+## Kelly (Gemini 1 - Lead) (TAKEN)
+- **Primary Responsibility:** **Workstream 3 Lead (Bo Thong Back Office)**. 
+- **Focus:** Business process mapping, stakeholder interviews, pain point logs, and operational workflow discovery.
+- **Working Branch:** `gemini-1-kelly/business-process`
 
-- Integration lead
-- Architecture and repo structure
-- Cross-team consistency
-- Pull request review
-- Final synthesis after discovery
+## Gemini 2 (Technical Lead)
+- **Primary Responsibility:** **Workstream 5 Lead (NIKOM Industrial IoT)**.
+- **Focus:** Node-RED, MQTT, PLC/Sensor connectivity audits, and technical documentation.
+- **Working Branch:** `gemini-2/iot-technical`
 
-Working branch:
-
-```text
-codex/integration
-```
-
-## Gemini 1 (TAKEN - Kelly)
-
-Primary responsibility:
-
-- Business process mapping
-- Stakeholder interviews
-- Pain point collection
-- Operations workflow discovery
-
-Working branch:
-
-```text
-gemini-1/business-process
-```
-
-## Gemini 2
-
-Primary responsibility:
-
-- Database planning
-- Spreadsheet and source data inventory
-- Data cleaning rules
-- Import/export requirements
-
-Working branch:
-
-```text
-gemini-2/database-data
-```
+## Gemini 3 (Data & Integration)
+- **Primary Responsibility:** **The Bridge**.
+- **Focus:** Database design, data cleaning, and connecting the Workstream 5 (IoT) data into the Workstream 3 (Back Office) tables.
+- **Working Branch:** `gemini-3/database-integration`
 
 ## Joe (Dashboard & Reporting)
-
-Primary responsibility:
-
-- Dashboard requirements
-- KPI definitions
-- Reporting layouts
-- User summary views
-
-Working branch:
-
-```text
-joe/dashboard-reporting
-```
+- **Primary Responsibility:** **User Experience & Analytics**.
+- **Focus:** Dashboard design (Custom/Grafana), KPI definitions (Workstream 3), and GIS mapping.
+- **Working Branch:** `joe/dashboard-reporting`
 
 ## Collaboration Rules
-
 - Put raw discovery notes in `docs/discovery/`.
 - Put source data findings in `docs/data/`.
 - Put dashboard and report requirements in `docs/reporting/`.

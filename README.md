@@ -35,14 +35,48 @@ Use these files tomorrow:
 
 Work happens through branches and pull requests.
 
-1. Start from the latest `main`.
-2. Create a machine-specific feature branch.
-3. Commit focused changes.
-4. Push the branch.
-5. Open a pull request into `main`.
-6. Review, test, and merge.
+1. Sync the local directory before every new instruction or task.
+2. Start from the latest `main`.
+3. Create a machine-specific feature branch.
+4. Commit focused changes.
+5. Push the branch.
+6. Open a pull request into `main`.
+7. Review, test, and merge.
 
-Do not commit directly to `main` unless you are doing project setup or emergency repair.
+Every machine must sync before reading files, making changes, or following a new instruction:
+
+```powershell
+.\scripts\sync-main.ps1
+```
+
+If a machine is working on a feature branch instead of `main`, it should still fetch first:
+
+```powershell
+git fetch origin
+git status
+```
+
+Then update or rebase according to the branch owner/integration plan.
+
+## Direct Main Commit Rule
+
+Do not commit directly to `main` unless you are doing project setup, emergency repair, or a specifically approved coordination update.
+
+Before any machine commits directly to `main`, including Mick's machine, it must show a confirmation prompt with:
+
+1. A short recap of the files changed.
+2. A short recap of the purpose of the change.
+3. Any risk or coordination impact for other machines.
+4. The exact commit message it plans to use.
+
+Only commit to `main` after explicit confirmation.
+
+Preferred workflow:
+
+1. Sync first.
+2. Create a machine-specific feature branch.
+3. Commit and push the branch.
+4. Open a pull request into `main`.
 
 ## Suggested Machine Branches
 
