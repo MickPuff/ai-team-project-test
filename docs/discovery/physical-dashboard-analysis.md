@@ -25,9 +25,11 @@ Based on the board, the rooms are organized into several series/blocks:
 - **Exterior Block (Left Top):** 5080-5073.
 
 ## 3. Observations for Database Import
-- **Status Indicators:** Yellow magnets indicate occupancy. White/Empty cells indicate vacancy.
-- **Checkmarks:** Some yellow rooms (e.g., 5043, 5031, 5013) have small red checkmarks—this likely indicates a specific sub-status (e.g., "Paid", "Contract Signed", or "Maintenance Due"). *Needs verification from Khun Aom.*
-- **Handwritten Notes:** There are dates and Thai notes (e.g., "3 บ่อ 19/2/67") indicating that this board is the primary source of truth for operations.
+- **Status Indicators:** Color coding (Yellow vs. White) is present but its specific meaning is unconfirmed (User corrected: does not simply mean Occupied/Vacant). 
+- **Checkmarks:** Some rooms have small red checkmarks—meaning needs verification from Khun Aom.
+- **Handwritten Notes:** Primary source of truth for dates and specific operational milestones.
+
+*Note: Occupancy data will be derived from the initial brief and Excel records, not the visual colors on this board.*
 
 ## 4. Next Steps
 1. **Scaffolding Script:** Use these identified series to generate a "Master Room List" CSV for Khun Aom to verify.
