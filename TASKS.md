@@ -25,11 +25,11 @@
 - [ ] Connectivity Research Note (Node-RED)
 
 ## 7-Day Deliverables
-- [ ] WS3 Workflow Diagram
-- [/] WS3 Dashboard Mockup (Owner's View) (Joe)
+- [x] WS3 Workflow Diagram (As-Is Workflow Doc)
+- [x] WS3 Dashboard Mockup (System Visualization Doc)
 - [ ] WS5 MQTT Topic Structure
 - [ ] WS5 Payload Schema (JSON)
-- [ ] Unified Database Model
+- [ ] Unified Database Model (Drafted)
 
 ## Done
 - [x] Project Definition Unified (WS3 & WS5)
