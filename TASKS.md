@@ -11,10 +11,12 @@
 ## Discovery Phase (May 20, 2026)
 
 ### Workstream 3 (Kelly)
+- [x] Site Visit Summary (May 20, 2026)
 - [ ] Interview Owner (Strategy)
 - [ ] Interview Finance (Billing/Revenue)
 - [ ] Map "As-Is" Workflow (Vacant -> Paid)
 - [ ] Document Manual Data Cleaning Steps
+- [ ] Draft Unified Database Model (SQLAlchemy)
 
 ### Workstream 5 (IoT Team)
 - [ ] Technical Checklist (PLC/Modbus/Tags)
