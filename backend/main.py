@@ -95,6 +95,30 @@ async def create_maintenance_report(
 
 # --- Admin Dashboard Endpoints ---
 
+@app.get("/api/admin/rooms", response_model=List[dict])
+def get_all_rooms(db: Session = Depends(database.get_db)):
+    rooms = db.query(models.Room).order_by(models.Room.room_number).all()
+    
+    # Check for active maintenance requests per room to set virtual status
+    active_maintenance = db.query(models.MaintenanceRequest).filter(
+        models.MaintenanceRequest.status != models.MaintenanceStatus.COMPLETED
+    ).all()
+    repair_room_ids = {m.room_id for m in active_maintenance}
+
+    result = []
+    for r in rooms:
+        # Determine status: prioritize Maintenance if there is an active request
+        status = r.status.value
+        if r.id in repair_room_ids:
+            status = "maintenance"
+            
+        result.append({
+            "id": r.id,
+            "room_number": r.room_number,
+            "status": status,
+        })
+    return result
+
 @app.get("/api/admin/requests", response_model=List[dict])
 def get_all_requests(db: Session = Depends(database.get_db)):
     requests = db.query(models.MaintenanceRequest).order_by(models.MaintenanceRequest.created_at.desc()).all()
