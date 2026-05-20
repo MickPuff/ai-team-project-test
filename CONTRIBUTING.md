@@ -18,7 +18,7 @@ gemini-2/database-data
 gemini-3/dashboard-reporting
 ```
 
-## Before Starting Work
+## Before Starting Work:
 
 ```powershell
 git checkout main
