@@ -15,6 +15,8 @@ interface MaintenanceRequest {
   is_portal: boolean;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 export default function AdminDashboard() {
   const [requests, setRequests] = useState<MaintenanceRequest[]>([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +25,7 @@ export default function AdminDashboard() {
   const fetchRequests = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8000/api/admin/requests");
+      const response = await fetch(`${API_URL}/api/admin/requests`);
       const data = await response.json();
       setRequests(data);
     } catch (error) {
@@ -35,7 +37,7 @@ export default function AdminDashboard() {
 
   const markDone = async (id: number) => {
     try {
-      await fetch(`http://localhost:8000/api/admin/requests/${id}/done`, {
+      await fetch(`${API_URL}/api/admin/requests/${id}/done`, {
         method: "POST",
       });
       setConfirmingId(null);
@@ -47,7 +49,7 @@ export default function AdminDashboard() {
 
   const reopenRequest = async (id: number) => {
     try {
-      await fetch(`http://localhost:8000/api/admin/requests/${id}/reopen`, {
+      await fetch(`${API_URL}/api/admin/requests/${id}/reopen`, {
         method: "POST",
       });
       fetchRequests();

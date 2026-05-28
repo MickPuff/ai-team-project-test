@@ -3,11 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
-# Use SQLite for easy local development
-SQLALCHEMY_DATABASE_URL = "sqlite:///./bothong.db"
+# Use a persistent path for the database in production
+DATABASE_PATH = os.getenv("DATABASE_URL", "sqlite:///./data/bothong.db")
 
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    DATABASE_PATH, connect_args={"check_same_thread": False}
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

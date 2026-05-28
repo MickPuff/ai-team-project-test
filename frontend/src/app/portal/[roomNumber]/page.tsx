@@ -3,6 +3,8 @@
 import { useState, use } from "react";
 import { Camera, Send, CheckCircle2, AlertCircle } from "lucide-react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 export default function TenantPortal({ params }: { params: Promise<{ roomNumber: string }> }) {
   const { roomNumber } = use(params);
   const [language, setLanguage] = useState<"zh" | "en">("zh");
@@ -57,7 +59,7 @@ export default function TenantPortal({ params }: { params: Promise<{ roomNumber:
         formData.append("photo", photo);
       }
 
-      const response = await fetch("http://localhost:8000/api/portal/report", {
+      const response = await fetch(`${API_URL}/api/portal/report`, {
         method: "POST",
         body: formData,
       });
@@ -152,45 +154,43 @@ export default function TenantPortal({ params }: { params: Promise<{ roomNumber:
         {/* Photo Upload */}
         <section>
           <label className="block text-sm font-semibold text-gray-700 mb-2">{t.photoLabel}</label>
-          <div className="relative h-40 w-full border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center bg-gray-50 overflow-hidden">
-            {photo ? (
-              <div className="relative w-full h-full">
-                <img 
-                  src={URL.createObjectURL(photo)} 
-                  className="w-full h-full object-cover" 
-                  alt="Preview"
-                />
-                <button 
-                  onClick={() => setPhoto(null)}
-                  className="absolute top-2 right-2 bg-black/50 text-white p-1 rounded-full"
-                >
-                  ✕
-                </button>
-              </div>
-            ) : (
-              <label className="cursor-pointer flex flex-col items-center">
-                <Camera className="w-10 h-10 text-gray-400 mb-2" />
-                <span className="text-xs text-gray-500">Tap to Capture</span>
-                <input 
-                  type="file" 
-                  accept="image/*" 
-                  capture="environment"
-                  className="hidden" 
-                  onChange={(e) => setPhoto(e.target.files?.[0] || null)}
-                />
-              </label>
-            )}
+          <div className="relative group">
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={(e) => setPhoto(e.target.files?.[0] || null)}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+            />
+            <div className={`border-2 border-dashed rounded-2xl p-8 flex flex-col items-center justify-center transition-all ${photo ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-white group-hover:border-blue-400'}`}>
+              <Camera className={`w-8 h-8 mb-2 ${photo ? 'text-green-500' : 'text-gray-400'}`} />
+              <p className="text-sm font-medium text-gray-500">
+                {photo ? photo.name : t.photoLabel}
+              </p>
+            </div>
           </div>
         </section>
+
+        {/* Error Message */}
+        {status === "error" && (
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center space-x-3 text-red-700">
+            <AlertCircle className="w-5 h-5" />
+            <p className="text-sm font-medium">{t.errorDesc}</p>
+          </div>
+        )}
 
         {/* Submit */}
         <button
           type="submit"
           disabled={status === "submitting" || !category || !description}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-bold py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center space-x-2 active:scale-95"
+          className={`w-full py-4 rounded-2xl font-bold text-lg shadow-lg flex items-center justify-center space-x-2 transition-all active:scale-95 ${
+            status === "submitting" || !category || !description
+              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+              : "bg-blue-600 text-white hover:bg-blue-700"
+          }`}
         >
           {status === "submitting" ? (
-             <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+            <RefreshCw className="w-5 h-5 animate-spin" />
           ) : (
             <>
               <Send className="w-5 h-5" />
@@ -198,14 +198,30 @@ export default function TenantPortal({ params }: { params: Promise<{ roomNumber:
             </>
           )}
         </button>
-
-        {status === "error" && (
-          <div className="flex items-center space-x-2 text-red-600 bg-red-50 p-3 rounded-lg text-sm">
-            <AlertCircle className="w-4 h-4" />
-            <span>{t.errorDesc}</span>
-          </div>
-        )}
       </form>
     </div>
+  );
+}
+
+// Simple internal icon component since RefreshCw was missing in imports but used in logic
+function RefreshCw({ className }: { className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+      <path d="M21 3v5h-5" />
+      <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+      <path d="M3 21v-5h5" />
+    </svg>
   );
 }

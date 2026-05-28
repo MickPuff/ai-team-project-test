@@ -10,6 +10,8 @@ interface Room {
   status: "available" | "occupied" | "maintenance" | "disabled";
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 export default function HighFidelityRoomMap() {
   const [rooms, setRooms] = useState<Room[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ export default function HighFidelityRoomMap() {
   const fetchRooms = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8000/api/admin/rooms");
+      const response = await fetch(`${API_URL}/api/admin/rooms`);
       const data = await response.json();
       setRooms(data);
     } catch (error) {
