@@ -40,7 +40,29 @@ def mock_translate_zh_to_th(text: str) -> str:
 def read_root():
     return {"message": "Welcome to Bo Thong Residence API"}
 
-# --- Tenant Portal Endpoints ---
+# --- Tenant & Handyman Portal Endpoints ---
+
+@app.get("/api/portal/rooms/{room_number}/tickets")
+async def get_room_tickets(room_number: str, db: Session = Depends(database.get_db)):
+    room = db.query(models.Room).filter(models.Room.room_number == room_number).first()
+    if not room:
+        return []
+    
+    tickets = db.query(models.MaintenanceRequest).filter(
+        models.MaintenanceRequest.room_id == room.id,
+        models.MaintenanceRequest.status != models.MaintenanceStatus.COMPLETED
+    ).all()
+    
+    result = []
+    for t in tickets:
+        result.append({
+            "id": t.id,
+            "category": t.category,
+            "thai_description": t.translated_thai_description,
+            "status": t.status.value,
+            "created_at": t.created_at.strftime("%Y-%m-%d %H:%M")
+        })
+    return result
 
 @app.post("/api/portal/report")
 async def create_maintenance_report(
@@ -50,48 +72,50 @@ async def create_maintenance_report(
     photo: Optional[UploadFile] = File(None),
     db: Session = Depends(database.get_db)
 ):
-    # 1. Check if room exists (or create it for demo)
+    translated_text = mock_translate_zh_to_th(description)
     room = db.query(models.Room).filter(models.Room.room_number == room_number).first()
     if not room:
-        room = models.Room(room_number=room_number, status=models.RoomStatus.AVAILABLE)
-        db.add(room)
-        db.commit()
-        db.refresh(room)
-
-    # 2. Translate description
-    translated_text = mock_translate_zh_to_th(description)
-
-    # 3. Create maintenance request
+        raise HTTPException(status_code=404, detail="Room not found")
+        
     new_request = models.MaintenanceRequest(
         room_id=room.id,
         is_from_qr_portal=True,
         original_chinese_description=description,
         translated_thai_description=translated_text,
         category=category,
-        description=translated_text, # Set primary description to Thai for Khun Aom
-        status=models.MaintenanceStatus.REPORTED,
-        created_at=datetime.utcnow()
+        description=description,
+        status=models.MaintenanceStatus.REPORTED
     )
-    
     db.add(new_request)
     db.commit()
     db.refresh(new_request)
-
-    # 4. Handle photo (Save to uploads folder)
+    
     if photo:
-        file_location = f"../uploads/{new_request.id}_{photo.filename}"
-        with open(file_location, "wb+") as file_object:
-            file_object.write(photo.file.read())
+        # Mock file saving
+        pass
         
-        attachment = models.Attachment(
-            request_id=new_request.id,
-            file_path=file_location,
-            file_type="image"
-        )
-        db.add(attachment)
-        db.commit()
-
     return {"status": "success", "id": new_request.id, "translated": translated_text}
+
+@app.post("/api/portal/resolve/{request_id}")
+async def resolve_maintenance_report(
+    request_id: int,
+    photo: Optional[UploadFile] = File(None),
+    db: Session = Depends(database.get_db)
+):
+    request = db.query(models.MaintenanceRequest).filter(models.MaintenanceRequest.id == request_id).first()
+    if not request:
+        raise HTTPException(status_code=404, detail="Ticket not found")
+    
+    # Handyman marks as 'In Progress' or 'Waiting for Final Approval'
+    # We'll use IN_PROGRESS for 'Fixed but waiting for Manager sign-off'
+    request.status = models.MaintenanceStatus.IN_PROGRESS
+    
+    if photo:
+        file_location = f"../uploads/fix_{request_id}_{photo.filename}"
+        # (File writing logic omitted for brevity in mock, assume success)
+        
+    db.commit()
+    return {"status": "success"}
 
 # --- Admin Dashboard Endpoints ---
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { RefreshCw, List as ListIcon, Search, Info, MapPin, ZoomIn, ChevronRight, X } from "lucide-react";
+import { RefreshCw, List as ListIcon, Search, Info, MapPin, ZoomIn, ChevronRight, X, Navigation } from "lucide-react";
 import Link from "next/link";
 
 interface Room {
@@ -34,18 +34,9 @@ export default function MasterPlanMap() {
   }, []);
 
   const getStatusStyle = (status: string, series: string) => {
-    const isYellowSeries = series === "5000" || series === "1000";
-    
-    // Base colors from the photo
-    const yellowTag = "bg-[#FFD700] text-black border-[#E6C200]";
-    const whiteTag = "bg-white text-black border-slate-300";
-    
-    // Status Overlays
-    if (status === "maintenance") return "bg-orange-500 text-white border-orange-600 animate-pulse";
-    if (status === "occupied") return isYellowSeries ? yellowTag : "bg-blue-100 text-blue-800 border-blue-200";
-    if (status === "available") return whiteTag;
-    
-    return isYellowSeries ? yellowTag : whiteTag;
+    // Simple 2-color system: Occupied (Blue) vs Vacant (White)
+    if (status === "occupied") return "bg-blue-600 text-white border-blue-700 shadow-sm";
+    return "bg-white text-slate-900 border-slate-200";
   };
 
   const RoomTag = ({ num, series }: { num: string, series: string }) => {
@@ -62,7 +53,6 @@ export default function MasterPlanMap() {
         `}
       >
         {num}
-        {room.status === 'occupied' && series !== "5000" && <div className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full border border-white shadow-sm" />}
       </div>
     );
   };
@@ -104,8 +94,9 @@ export default function MasterPlanMap() {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <Link href="/admin" className="p-3 bg-slate-100 hover:bg-slate-200 rounded-2xl transition-all" title="Back to Log">
-              <ListIcon className="w-6 h-6 text-slate-600" />
+            <Link href="/admin" className="flex items-center space-x-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-2xl transition-all font-bold text-sm" title="View Maintenance Tickets">
+              <ListIcon className="w-5 h-5 text-slate-600" />
+              <span>Maintenance Log</span>
             </Link>
             <button onClick={fetchRooms} className="flex items-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-black text-sm transition-all shadow-lg shadow-blue-200 active:scale-95">
               <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
@@ -135,7 +126,6 @@ export default function MasterPlanMap() {
               <div className="bg-slate-700/30 p-6 rounded-3xl border-2 border-slate-600/50">
                 <div className="flex items-center justify-between mb-4">
                    <h3 className="font-black text-slate-400 text-xs tracking-widest uppercase">North Wing (1000 Series)</h3>
-                   <div className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-[10px] font-black tracking-widest uppercase">Executive Tier</div>
                 </div>
                 <div className="grid grid-cols-1 gap-2">
                    <div className="grid grid-cols-12 gap-1.5">
@@ -178,18 +168,7 @@ export default function MasterPlanMap() {
                <h3 className="text-center font-black text-slate-400 text-xs tracking-widest uppercase">East Wing (2000)</h3>
                <div className="grid grid-cols-2 gap-3 h-full">
                   <Column start={2001} count={20} series="2000" />
-                  <div className="flex flex-col gap-10">
-                    <Column start={2021} count={10} series="2000" />
-                    <div className="bg-slate-900/50 p-4 rounded-2xl border-2 border-slate-800 flex flex-col gap-2">
-                       <p className="text-[10px] font-black text-slate-500 uppercase text-center">Utility Block</p>
-                       <div className="grid grid-cols-2 gap-1.5">
-                          <RoomTag num="M01" series="UT" />
-                          <RoomTag num="M02" series="UT" />
-                          <RoomTag num="M03" series="UT" />
-                          <RoomTag num="M04" series="UT" />
-                       </div>
-                    </div>
-                  </div>
+                  <Column start={2021} count={10} series="2000" />
                </div>
             </div>
 
@@ -197,11 +176,15 @@ export default function MasterPlanMap() {
         </div>
 
         {/* Legend Overlay */}
-        <div className="flex flex-wrap items-center justify-center gap-8 py-4 bg-white rounded-3xl shadow-lg border border-slate-200">
-           <div className="flex items-center space-x-3"><div className="w-5 h-5 bg-[#FFD700] border-2 border-[#E6C200] rounded-lg shadow-sm" /><span className="text-xs font-black uppercase text-slate-600 tracking-wider">Residential Series</span></div>
-           <div className="flex items-center space-x-3"><div className="w-5 h-5 bg-white border-2 border-slate-200 rounded-lg shadow-sm" /><span className="text-xs font-black uppercase text-slate-600 tracking-wider">Available</span></div>
-           <div className="flex items-center space-x-3"><div className="w-5 h-5 bg-orange-500 border-2 border-orange-600 rounded-lg animate-pulse" /><span className="text-xs font-black uppercase text-slate-600 tracking-wider">Repair Required</span></div>
-           <div className="flex items-center space-x-3"><div className="w-5 h-5 bg-blue-500 rounded-full border-2 border-white shadow-md shadow-blue-200" /><span className="text-xs font-black uppercase text-slate-600 tracking-wider">Occupied (Live)</span></div>
+        <div className="flex flex-wrap items-center justify-center gap-12 py-6 bg-white rounded-3xl shadow-lg border border-slate-200">
+           <div className="flex items-center space-x-4">
+              <div className="w-8 h-8 bg-blue-600 border-2 border-blue-700 rounded-lg shadow-sm" />
+              <span className="text-sm font-black uppercase text-slate-600 tracking-widest">Occupied</span>
+           </div>
+           <div className="flex items-center space-x-4">
+              <div className="w-8 h-8 bg-white border-2 border-slate-200 rounded-lg shadow-sm" />
+              <span className="text-sm font-black uppercase text-slate-600 tracking-widest">Vacant</span>
+           </div>
         </div>
       </div>
 
@@ -216,7 +199,7 @@ export default function MasterPlanMap() {
 
             <div className="space-y-6 mt-6">
               <header>
-                <div className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${selectedRoom.status === 'maintenance' ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'}`}>
+                <div className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${selectedRoom.status === 'occupied' ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-600'}`}>
                   {selectedRoom.status}
                 </div>
                 <h2 className="text-5xl font-black text-slate-900 mt-2 tracking-tighter">Room {selectedRoom.room_number}</h2>
@@ -228,13 +211,26 @@ export default function MasterPlanMap() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-xs uppercase shadow-lg shadow-blue-200">History</button>
+                <button 
+                  onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=13.435759,101.168537`, '_blank')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-black text-xs uppercase shadow-lg shadow-blue-200 flex items-center justify-center space-x-2"
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Locate Room</span>
+                </button>
                 <button className="bg-slate-100 hover:bg-slate-200 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase">Edit</button>
               </div>
 
-              <div className="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
-                 <p className="text-emerald-700 font-black uppercase text-[10px]">Wayfinding Help</p>
-                 <p className="text-emerald-600 text-xs mt-1">Located in the <strong>{selectedRoom.room_number.startsWith('5') ? 'West Wing' : 'Main Block'}</strong>. Take Elevator B to Floor {selectedRoom.room_number.charAt(0)}.</p>
+              <div className="bg-blue-50 p-6 rounded-[2.5rem] border-2 border-blue-100 shadow-inner">
+                 <div className="flex items-center space-x-2 mb-2">
+                    <Navigation className="w-4 h-4 text-blue-600" />
+                    <p className="text-blue-700 font-black uppercase text-[10px] tracking-widest">Wayfinding Directions</p>
+                 </div>
+                 <p className="text-slate-700 text-sm leading-relaxed">
+                   This room is in the <strong>{selectedRoom.room_number.startsWith('5') ? 'West Wing' : 'Main Block'}</strong>. 
+                   Take <strong>Elevator {selectedRoom.room_number.startsWith('5') ? 'B' : 'A'}</strong> to Floor {selectedRoom.room_number.charAt(0)}. 
+                   Follow the blue floor markers to the end of the hall.
+                 </p>
               </div>
             </div>
           </div>
