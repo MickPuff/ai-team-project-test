@@ -24,3 +24,8 @@
 
 
 ## Tenants are lost (they dont know where their rooms are)
+
+
+## Tedious/Manual way of collecting and storing data about electricity costs in each room
+- Every month someone has to manually walk to each room and manually check the electricity cost
+- Prone to human error and extremely repetitive and boring

@@ -71,10 +71,25 @@ class Contract(Base):
     start_date = Column(DateTime)
     end_date = Column(DateTime)
     monthly_rent = Column(Float)
+    deposit_amount = Column(Float, default=0.0)
     status = Column(String)  # active, expired, terminated
     
     tenant = relationship("Tenant")
     room = relationship("Room")
+    deductions = relationship("Deduction", back_populates="contract")
+
+class Deduction(Base):
+    __tablename__ = "deductions"
+    id = Column(Integer, primary_key=True, index=True)
+    contract_id = Column(Integer, ForeignKey("contracts.id"))
+    category = Column(String) # electricity, water, cleaning, damage, other
+    amount = Column(Float)
+    description = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    maintenance_request_id = Column(Integer, ForeignKey("maintenance_requests.id"), nullable=True)
+    
+    contract = relationship("Contract", back_populates="deductions")
+    maintenance_request = relationship("MaintenanceRequest")
 
 class MaintenanceRequest(Base):
     __tablename__ = "maintenance_requests"

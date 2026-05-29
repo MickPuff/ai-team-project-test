@@ -14,10 +14,11 @@ Use this file for lightweight coordination across the AI CLI machines.
 ### Business Process And Operations
 
 - [ ] Interview owner
+- [x] Site Visit Summary (May 20, 2026)
 - [ ] Interview finance/admin
 - [ ] Interview managers
 - [ ] Interview operations team
-- [ ] Map current workflow from vacant room to paid room
+- [x] Map current workflow from vacant room to paid room
 - [ ] Document manual data cleaning steps
 
 ### Data And Reporting
@@ -31,8 +32,8 @@ Use this file for lightweight coordination across the AI CLI machines.
 
 ## 7-Day Deliverables
 
-- [ ] Current-state workflow diagram
-- [/] Owner dashboard mockup (Joe)
+- [x] Current-state workflow diagram
+- [x] Owner dashboard mockup (Joe)
 - [ ] Data inventory and data quality notes
 - [ ] KPI catalog
 - [ ] MVP database model
